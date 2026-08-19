@@ -70,7 +70,7 @@ export default function Hero() {
         {/* role */}
         <motion.p className="hero__role" {...up(0.42)}>
           <strong>Software Developer</strong>
-          <span style={{ color: 'var(--ink-2)', fontWeight: 400 }}> — Full-Stack &amp; Mobile</span>
+          <span style={{ color: 'var(--beige)', fontWeight: 400 }}> — Full-Stack &amp; Mobile</span>
         </motion.p>
 
         {/* animated rule */}
