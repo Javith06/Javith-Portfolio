@@ -1,0 +1,42 @@
+import { Reveal } from './Reveal';
+import { summary, certifications } from '../data/portfolio';
+
+export default function About() {
+  return (
+    <section id="about" className="section">
+      <div className="wrap">
+        <Reveal><span className="lbl">About</span></Reveal>
+
+        <div className="about__grid">
+          <Reveal delay={0.08} className="about__left">
+            <h2 className="about__head">
+              Building<br />software<br />with purpose.
+            </h2>
+            <p className="about__sub">
+              Bengaluru, India · Unipro Softwares Pte. Ltd.
+            </p>
+            <span className="about__chip">● Open to opportunities</span>
+          </Reveal>
+
+          <Reveal delay={0.18} className="about__right">
+            <p className="about__body">{summary}</p>
+            <div className="about__cert-wrap">
+              <div className="about__cert-label">Certification</div>
+              {certifications.map(c => (
+                <div key={c.title} className="about__cert-item">
+                  <span className="cert-check">✓</span>
+                  <span>
+                    {c.title}{' '}
+                    <span style={{ color: 'var(--violet)', fontWeight: 600 }}>
+                      — {c.issuer}
+                    </span>
+                  </span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
