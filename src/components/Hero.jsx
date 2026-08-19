@@ -1,6 +1,5 @@
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { personal } from '../data/portfolio';
-import FluidCanvas from './FluidCanvas';
 
 /* ─── Word-by-word stagger ─────────────────────────────────────────── */
 const container = {
@@ -33,15 +32,59 @@ const up = (delay = 0) => ({
 
 /* ─── Hero ─────────────────────────────────────────────────────────── */
 export default function Hero() {
+  // Motion values for smooth 3D tilt interaction
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  // Transform values into actual degree rotations
+  const rotateX = useTransform(y, [-300, 300], [10, -10]);
+  const rotateY = useTransform(x, [-300, 300], [-10, 10]);
+
+  const handleMouseMove = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = event.clientX - rect.left - width / 2;
+    const mouseY = event.clientY - rect.top - height / 2;
+
+    x.set(mouseX);
+    y.set(mouseY);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
   return (
-    <section id="hero" className="hero">
+    <section 
+      id="hero" 
+      className="hero"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ perspective: 1000 }}
+    >
 
-      {/* Live 3D WebGL morphing fluid mesh background */}
-      <FluidCanvas />
+      {/* 5-blob mesh gradient — matches the purple/cream/olive image */}
+      <div className="hero-mesh" aria-hidden="true">
+        <div className="mesh-blob blob-cream" />
+        <div className="mesh-blob blob-purple-l" />
+        <div className="mesh-blob blob-purple-r" />
+        <div className="mesh-blob blob-olive-l" />
+        <div className="mesh-blob blob-olive-r" />
+      </div>
 
-      <div className="hero__wrap">
+      <motion.div 
+        className="hero__wrap"
+        style={{
+          rotateX,
+          rotateY,
+          transformStyle: 'preserve-3d',
+          transition: 'all 0.1s ease-out',
+        }}
+      >
         {/* eyebrow */}
-        <motion.div className="hero__eyebrow" {...up(0.05)}>
+        <motion.div className="hero__eyebrow" {...up(0.05)} style={{ transform: 'translateZ(20px)' }}>
           <span className="status-dot" />
           <span>{personal.location}</span>
           <span className="hero__eyebrow-sep">·</span>
@@ -49,7 +92,7 @@ export default function Hero() {
         </motion.div>
 
         {/* name — word-by-word stagger, wrapped for left accent bar */}
-        <div className="hero__name-wrap">
+        <div className="hero__name-wrap" style={{ transform: 'translateZ(40px)' }}>
           <motion.h1
             className="hero__name"
             variants={container}
@@ -63,7 +106,7 @@ export default function Hero() {
         </div>
 
         {/* role */}
-        <motion.p className="hero__role" {...up(0.42)}>
+        <motion.p className="hero__role" {...up(0.42)} style={{ transform: 'translateZ(30px)' }}>
           <strong>Software Developer</strong>
           <span style={{ color: 'var(--beige)', fontWeight: 400 }}> — Full-Stack &amp; Mobile</span>
         </motion.p>
@@ -74,17 +117,18 @@ export default function Hero() {
           initial={{ scaleX: 0, opacity: 0 }}
           animate={{ scaleX: 1, opacity: 1 }}
           transition={{ duration: 0.75, delay: 0.52, ease: [0.22, 1, 0.36, 1] }}
+          style={{ transform: 'translateZ(25px)' }}
         />
 
         {/* description */}
-        <motion.p className="hero__desc" {...up(0.58)}>
+        <motion.p className="hero__desc" {...up(0.58)} style={{ transform: 'translateZ(20px)' }}>
           Professional experience building and maintaining production web and
           mobile applications — React, React Native, Node.js, REST APIs, SQL,
           real-time communication, and cloud deployment.
         </motion.p>
 
         {/* CTAs */}
-        <motion.div className="hero__ctas" {...up(0.68)}>
+        <motion.div className="hero__ctas" {...up(0.68)} style={{ transform: 'translateZ(15px)' }}>
           <a
             href="#projects"
             style={{
@@ -120,7 +164,7 @@ export default function Hero() {
         </motion.div>
 
         {/* meta links */}
-        <motion.div className="hero__meta" {...up(0.78)}>
+        <motion.div className="hero__meta" {...up(0.78)} style={{ transform: 'translateZ(10px)' }}>
           <a href={personal.linkedin} target="_blank" rel="noopener noreferrer">
             LinkedIn ↗
           </a>
@@ -129,7 +173,7 @@ export default function Hero() {
           <span className="hero__meta-sep">·</span>
           <span>{personal.phone}</span>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* scroll indicator */}
       <div className="hero__scroll" aria-hidden="true">
