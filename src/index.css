@@ -194,12 +194,14 @@ ul { list-style: none; }
 
 /* Shared large section heading — Projects, Experience */
 .section-h2 {
+  display: block;
   font-family: var(--display);
   font-size: clamp(64px, 9vw, 128px);
   font-weight: 900;
   letter-spacing: -0.058em;
   line-height: 0.88;
   margin-bottom: 72px;
+  color: var(--ink-1); /* Fallback */
   background: linear-gradient(135deg, var(--ink-1) 0%, var(--beige) 55%, var(--violet) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -489,11 +491,11 @@ ul { list-style: none; }
   gap: 18px;
   font-family: var(--sans);
   font-size: 13px;
-  color: var(--ink-4);
+  color: var(--ink-2);
 }
 .hero__meta a { transition: color 0.2s; }
-.hero__meta a:hover { color: var(--beige); }
-.hero__meta-sep { color: rgba(255,255,255,0.08); }
+.hero__meta a:hover { color: var(--violet); }
+.hero__meta-sep { color: var(--violet-border); }
 
 /* Scroll hint */
 .hero__scroll {
@@ -541,12 +543,14 @@ ul { list-style: none; }
   align-items: start;
 }
 .about__head {
+  display: block;
   font-family: var(--display);
   font-size: clamp(60px, 8vw, 108px);
   font-weight: 900;
   letter-spacing: -0.055em;
   line-height: 0.90;
   margin-bottom: 28px;
+  color: var(--ink-1); /* Fallback */
   background: linear-gradient(135deg, var(--ink-1) 0%, var(--beige) 55%, var(--violet) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -990,12 +994,14 @@ ul { list-style: none; }
   margin-bottom: 64px;
 }
 .skills-h2 {
+  display: block;
   font-family: var(--display);
   font-size: clamp(64px, 9vw, 128px);
   font-weight: 900;
   letter-spacing: -0.058em;
   line-height: 0.88;
   margin-bottom: 28px;
+  color: var(--ink-1); /* Fallback */
   background: linear-gradient(135deg, var(--ink-1) 0%, var(--beige) 55%, var(--violet) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1049,7 +1055,7 @@ ul { list-style: none; }
   color: var(--ink-1);
   padding-left: 6px;
 }
-
+ 
 /* ─── CONTACT ─────────────────────────────────────────────────────── */
 .contact-grid {
   display: grid;
@@ -1058,11 +1064,12 @@ ul { list-style: none; }
   align-items: start;
 }
 .contact-h2 {
+  display: block;
   font-family: var(--display);
   font-size: clamp(64px, 9.5vw, 136px);
   font-weight: 900;
   letter-spacing: -0.06em;
-  color: var(--ink-1);
+  color: var(--ink-1); /* Fallback */
   line-height: 0.88;
   margin-bottom: 28px;
   background: linear-gradient(135deg, var(--ink-1) 0%, var(--beige) 55%, var(--violet) 100%);

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { personal } from '../data/portfolio';
+import FluidCanvas from './FluidCanvas';
 
 /* ─── Word-by-word stagger ─────────────────────────────────────────── */
 const container = {
@@ -35,14 +36,8 @@ export default function Hero() {
   return (
     <section id="hero" className="hero">
 
-      {/* 5-blob mesh gradient — matches the purple/cream/olive image */}
-      <div className="hero-mesh" aria-hidden="true">
-        <div className="mesh-blob blob-cream" />
-        <div className="mesh-blob blob-purple-l" />
-        <div className="mesh-blob blob-purple-r" />
-        <div className="mesh-blob blob-olive-l" />
-        <div className="mesh-blob blob-olive-r" />
-      </div>
+      {/* Live 3D WebGL morphing fluid mesh background */}
+      <FluidCanvas />
 
       <div className="hero__wrap">
         {/* eyebrow */}
