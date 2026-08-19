@@ -13,10 +13,12 @@
   inset: 0;
   pointer-events: none;
   z-index: 99;
+  /* subtle transition makes mouse tracking ultra-smooth */
+  transition: background 0.15s ease-out; 
   background: radial-gradient(
-    650px circle at var(--x, 0px) var(--y, 0px),
-    rgba(164, 138, 245, 0.04) 0%,
-    rgba(201, 178, 138, 0.02) 40%,
+    700px circle at var(--x, 0px) var(--y, 0px),
+    rgba(164, 138, 245, 0.05) 0%,
+    rgba(201, 178, 138, 0.02) 45%,
     transparent 80%
   );
 }
