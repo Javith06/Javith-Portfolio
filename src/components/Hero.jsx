@@ -55,24 +55,22 @@ export default function Hero() {
 
         {/* name — word-by-word stagger, wrapped for left accent bar */}
         <div className="hero__name-wrap">
-          <div style={{ overflow: 'hidden' }}>
-            <motion.h1
-              className="hero__name"
-              variants={container}
-              initial="hidden"
-              animate="show"
-            >
-              {personal.name.split(' ').map((w, i) => (
-                <Word key={i} text={w} />
-              ))}
-            </motion.h1>
-          </div>
+          <motion.h1
+            className="hero__name"
+            variants={container}
+            initial="hidden"
+            animate="show"
+          >
+            {personal.name.split(' ').map((w, i) => (
+              <Word key={i} text={w} />
+            ))}
+          </motion.h1>
         </div>
 
         {/* role */}
         <motion.p className="hero__role" {...up(0.42)}>
           <strong>Software Developer</strong>
-          <span style={{ color: 'rgba(155,127,244,0.55)', fontWeight: 400 }}> — Full-Stack &amp; Mobile</span>
+          <span style={{ color: 'var(--ink-2)', fontWeight: 400 }}> — Full-Stack &amp; Mobile</span>
         </motion.p>
 
         {/* animated rule */}

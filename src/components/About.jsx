@@ -12,9 +12,6 @@ export default function About() {
             <h2 className="about__head">
               Building<br />software<br />with purpose.
             </h2>
-            <p className="about__sub">
-              Bengaluru, India · Unipro Softwares Pte. Ltd.
-            </p>
             <span className="about__chip">● Open to opportunities</span>
           </Reveal>
 
