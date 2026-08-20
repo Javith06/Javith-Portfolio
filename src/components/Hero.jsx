@@ -85,35 +85,11 @@ export default function Hero() {
     const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     setIsTouchDevice(touch);
 
-    let autoPermissionHandler = null;
-
     if (touch && typeof window !== 'undefined') {
       if (window.DeviceOrientationEvent) {
         setMotionSupported(true);
         if (typeof DeviceOrientationEvent.requestPermission === 'function') {
           setPermissionPromptNeeded(true);
-
-          autoPermissionHandler = async () => {
-            try {
-              const state = await DeviceOrientationEvent.requestPermission();
-              if (state === 'granted') {
-                window.addEventListener('deviceorientation', handleOrientation);
-                setMotionActive(true);
-                setPermissionPromptNeeded(false);
-              }
-            } catch (err) {
-              console.error('iOS orientation request error:', err);
-            }
-            cleanupAutoRequest();
-          };
-
-          const cleanupAutoRequest = () => {
-            window.removeEventListener('click', autoPermissionHandler);
-            window.removeEventListener('touchstart', autoPermissionHandler);
-          };
-
-          window.addEventListener('click', autoPermissionHandler);
-          window.addEventListener('touchstart', autoPermissionHandler);
         } else {
           // Android / standard mobile browsers auto-grant permission
           window.addEventListener('deviceorientation', handleOrientation);
@@ -124,12 +100,26 @@ export default function Hero() {
 
     return () => {
       window.removeEventListener('deviceorientation', handleOrientation);
-      if (autoPermissionHandler) {
-        window.removeEventListener('click', autoPermissionHandler);
-        window.removeEventListener('touchstart', autoPermissionHandler);
-      }
     };
   }, []);
+
+  const requestMotionPermission = async () => {
+    if (
+      typeof DeviceOrientationEvent !== 'undefined' &&
+      typeof DeviceOrientationEvent.requestPermission === 'function'
+    ) {
+      try {
+        const state = await DeviceOrientationEvent.requestPermission();
+        if (state === 'granted') {
+          window.addEventListener('deviceorientation', handleOrientation);
+          setMotionActive(true);
+          setPermissionPromptNeeded(false);
+        }
+      } catch (err) {
+        console.error('Error requesting orientation permission:', err);
+      }
+    }
+  };
 
   const handleHeroTouch = () => {
     initialBetaRef.current = null;
@@ -188,6 +178,17 @@ export default function Hero() {
           <span>{personal.location}</span>
           <span className="hero__eyebrow-sep">·</span>
           <span style={{ color: '#b8a8f0' }}>{personal.status}</span>
+          {isTouchDevice && permissionPromptNeeded && !motionActive && (
+            <>
+              <span className="hero__eyebrow-sep">·</span>
+              <button 
+                onClick={(e) => { e.stopPropagation(); requestMotionPermission(); }} 
+                className="hero__motion-enable-btn"
+              >
+                ✨ 3D Tilt
+              </button>
+            </>
+          )}
         </motion.div>
 
         {/* name — word-by-word stagger, wrapped for left accent bar */}

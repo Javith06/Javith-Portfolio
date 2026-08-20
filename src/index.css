@@ -531,6 +531,31 @@ ul { list-style: none; }
   color: rgba(150, 146, 138, 0.7);
 }
 
+.hero__motion-enable-btn {
+  background: rgba(164, 138, 245, 0.08);
+  border: 1px solid rgba(164, 138, 245, 0.25);
+  color: var(--violet);
+  padding: 3px 9px;
+  border-radius: 100px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+.hero__motion-enable-btn:hover {
+  background: var(--violet);
+  color: #fff;
+  border-color: transparent;
+  transform: translateY(-0.5px);
+}
+
 /* ─── ABOUT ───────────────────────────────────────────────────────── */
 #about { background: var(--bg-warm); }
 #experience { background: var(--bg); }
