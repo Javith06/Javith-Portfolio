@@ -120,9 +120,10 @@ export default function Projects() {
                 <div className="proj-feat__tags">
                   {featured.tags.map(t => <span key={t} className="tag">{t}</span>)}
                 </div>
+              </div>
               <div className="proj-feat__vis" style={{ padding: 0, minHeight: 'auto' }}>
                 <img 
-                  src="/smart-pos.png" 
+                  src="/smart-pos.jpg" 
                   alt="Smart-POS restaurant Point of Sale preview" 
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
                 />
