@@ -540,8 +540,8 @@ ul { list-style: none; }
 
 .about__grid {
   display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 88px;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 48px;
   align-items: start;
 }
 .about__head {
@@ -1062,8 +1062,8 @@ ul { list-style: none; }
 /* ─── CONTACT ─────────────────────────────────────────────────────── */
 .contact-grid {
   display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 88px;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 48px;
   align-items: start;
 }
 .contact-h2 {
@@ -1162,7 +1162,7 @@ ul { list-style: none; }
 .footer-link:hover { color: var(--beige); }
 
 /* ─── RESPONSIVE ──────────────────────────────────────────────────── */
-@media (max-width: 1280px) {
+@media (max-width: 1080px) {
   :root { --pad: 28px; }
   .about__grid, .exp__cols, .contact-grid {
     grid-template-columns: minmax(0, 1fr);
