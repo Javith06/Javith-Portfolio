@@ -11,6 +11,7 @@ export const personal = {
   linkedinHandle: 'mhd-javith22',
   github: 'https://github.com/Javith06',
   githubHandle: 'Javith06',
+  resume: '/resume.pdf',
 };
 
 export const summary =

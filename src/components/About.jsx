@@ -1,5 +1,5 @@
 import { Reveal } from './Reveal';
-import { summary, certifications } from '../data/portfolio';
+import { summary, certifications, personal } from '../data/portfolio';
 
 export default function About() {
   return (
@@ -30,6 +30,17 @@ export default function About() {
                   </span>
                 </div>
               ))}
+            </div>
+
+            <div style={{ marginTop: '36px' }}>
+              <a 
+                href={personal.resume} 
+                download="Mohammed_Javith_Resume.pdf"
+                className="btn btn-outline"
+                style={{ display: 'inline-flex', padding: '12px 24px', fontSize: '12px' }}
+              >
+                Download Resume
+              </a>
             </div>
           </Reveal>
         </div>

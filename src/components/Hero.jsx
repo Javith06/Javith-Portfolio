@@ -273,6 +273,10 @@ export default function Hero() {
             GitHub ↗
           </a>
           <span className="hero__meta-sep">·</span>
+          <a href={personal.resume} target="_blank" rel="noopener noreferrer">
+            Resume ↗
+          </a>
+          <span className="hero__meta-sep">·</span>
           <span>{personal.email}</span>
           <span className="hero__meta-sep">·</span>
           <span>{personal.phone}</span>
