@@ -26,7 +26,10 @@ export default function Navbar() {
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="nav__inner">
-        <a href="#hero" className="nav__logo">Javith's Portfolio</a>
+        <a href="#hero" className="nav__logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <img src="/logo.png" alt="Atom Logo" style={{ width: '26px', height: '26px', borderRadius: '50%' }} />
+          <span>Javith's Portfolio</span>
+        </a>
         <nav className="nav__links" aria-label="Main navigation">
           {LINKS.map(l => (
             <a key={l.href} href={l.href} className="nav__link">{l.label}</a>
