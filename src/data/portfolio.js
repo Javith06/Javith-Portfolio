@@ -18,7 +18,7 @@ export const summary =
 export const experience = [
   {
     role: 'Software Developer',
-    company: 'Unipro Softwares Pte. Ltd.',
+    company: 'Unipro Softwares SG Pte. Ltd.',
     url: 'https://uniprosg.com',
     period: 'Feb 2026 – Present',
     location: 'Puducherry, India',
