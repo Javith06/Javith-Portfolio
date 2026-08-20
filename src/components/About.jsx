@@ -36,6 +36,8 @@ export default function About() {
               <a 
                 href={personal.resume} 
                 download="Mohammed_Javith_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-outline"
                 style={{ display: 'inline-flex', padding: '12px 24px', fontSize: '12px' }}
               >
