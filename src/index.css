@@ -529,42 +529,6 @@ ul { list-style: none; }
   color: rgba(150, 146, 138, 0.7);
 }
 
-/* 3D Motion Status indicators */
-.hero__motion-enable-btn {
-  background: var(--violet-light);
-  border: 1px solid var(--violet-border);
-  color: var(--violet);
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: var(--sans);
-  transition: all 0.25s ease;
-  animation: pulseEnable 2s infinite alternate;
-}
-.hero__motion-enable-btn:hover {
-  background: var(--violet);
-  color: #fff;
-  border-color: transparent;
-  transform: scale(1.05);
-}
-@keyframes pulseEnable {
-  from { transform: scale(1); box-shadow: 0 0 0 0 rgba(164, 138, 245, 0.4); }
-  to { transform: scale(1.03); box-shadow: 0 0 8px 2px rgba(164, 138, 245, 0.2); }
-}
-
-.hero__motion-status {
-  font-size: 11px;
-  color: var(--beige);
-  font-weight: 500;
-  opacity: 0.85;
-  transition: opacity 0.2s;
-}
-.hero__motion-status:hover {
-  opacity: 1;
-}
-
 /* ─── ABOUT ───────────────────────────────────────────────────────── */
 #about { background: var(--bg-warm); }
 #experience { background: var(--bg); }

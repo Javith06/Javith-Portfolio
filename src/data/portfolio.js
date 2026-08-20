@@ -9,7 +9,8 @@ export const personal = {
   phone: '+91 9788797896',
   linkedin: 'https://linkedin.com/in/mhd-javith22',
   linkedinHandle: 'mhd-javith22',
-  github: 'https://github.com/',
+  github: 'https://github.com/Javith06',
+  githubHandle: 'Javith06',
 };
 
 export const summary =

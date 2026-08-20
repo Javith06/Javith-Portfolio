@@ -10,6 +10,7 @@ export default function Footer() {
         <div className="footer-links">
           <a href={`mailto:${personal.email}`} className="footer-link">Email</a>
           <a href={personal.linkedin} target="_blank" rel="noopener noreferrer" className="footer-link">LinkedIn</a>
+          <a href={personal.github} target="_blank" rel="noopener noreferrer" className="footer-link">GitHub</a>
           <a href={`tel:${personal.phone.replace(/\s/g,'')}`} className="footer-link">Phone</a>
         </div>
       </div>
