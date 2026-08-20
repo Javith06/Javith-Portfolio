@@ -19,7 +19,7 @@ export default function Contact() {
               Let's build<br />something<br /><em>useful</em>.
             </h2>
             <p className="contact-sub">
-              Open to full-time roles,<br />
+              Open to full-time roles, freelance projects,<br />
               contract work &amp; interesting problems.
             </p>
           </Reveal>
@@ -28,7 +28,7 @@ export default function Contact() {
             <p className="contact-body">
               I'm open to opportunities where I can work across the full
               stack — frontend, backend, mobile, or production systems.
-              If you have something to build, I'd like to hear about it.
+              If you have a freelance project or opportunity to build, I'd like to hear about it.
               I respond quickly.
             </p>
             <div className="contact-rows">

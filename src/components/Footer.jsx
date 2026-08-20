@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-inner">
         <span className="footer-copy">
-          © {new Date().getFullYear()} Mohammed Javith J — Software Developer
+          Made by Javith © {new Date().getFullYear()} · Open for Freelance Projects
         </span>
         <div className="footer-links">
           <a href={`mailto:${personal.email}`} className="footer-link">Email</a>

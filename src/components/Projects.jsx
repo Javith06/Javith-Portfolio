@@ -109,7 +109,7 @@ export default function Projects() {
             <div className="proj-feat">
               <div className="proj-feat__info">
                 <div className="proj-type-badge">
-                  <span className="proj-dot" /> {featured.type} · Production
+                  <span className="proj-dot" /> {featured.type}
                 </div>
                 <h2 className="proj-feat__title">{featured.title}</h2>
                 <p className="proj-feat__sub">{featured.subtitle}</p>
