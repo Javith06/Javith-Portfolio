@@ -21,7 +21,7 @@ export const experience = [
     company: 'Unipro Softwares Pte. Ltd.',
     url: 'https://uniprosg.com',
     period: 'Feb 2026 – Present',
-    location: 'Bengaluru, India',
+    location: 'Puducherry, India',
     points: [
       'Develop and maintain production software across frontend, backend, database, and system integrations.',
       'Build and integrate REST APIs, authentication, SQL queries, real-time communication, payment services, and third-party integrations.',

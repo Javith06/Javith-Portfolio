@@ -1,4 +1,5 @@
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { personal } from '../data/portfolio';
 
 /* ─── Word-by-word stagger ─────────────────────────────────────────── */
@@ -17,7 +18,12 @@ function Word({ text }) {
   return (
     <motion.span
       variants={wordAnim}
-      style={{ display: 'inline-block', marginRight: '0.18em' }}
+      style={{ 
+        display: 'inline-block', 
+        marginRight: '0.18em',
+        whiteSpace: 'pre-wrap',
+        wordBreak: 'break-word'
+      }}
     >
       {text}
     </motion.span>
@@ -36,11 +42,92 @@ export default function Hero() {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  // Transform values into actual degree rotations
-  const rotateX = useTransform(y, [-300, 300], [10, -10]);
-  const rotateY = useTransform(x, [-300, 300], [-10, 10]);
+  // Smooth springs for premium fluid motion
+  const springX = useSpring(x, { stiffness: 100, damping: 20 });
+  const springY = useSpring(y, { stiffness: 100, damping: 20 });
+
+  // Transform spring values into rotation degrees
+  const rotateX = useTransform(springY, [-300, 300], [12, -12]);
+  const rotateY = useTransform(springX, [-300, 300], [-12, 12]);
+
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [motionSupported, setMotionSupported] = useState(false);
+  const [motionActive, setMotionActive] = useState(false);
+  const [permissionPromptNeeded, setPermissionPromptNeeded] = useState(false);
+
+  const initialBetaRef = useRef(null);
+  const initialGammaRef = useRef(null);
+
+  const handleOrientation = (event) => {
+    const { beta, gamma } = event;
+    if (beta === null || gamma === null) return;
+
+    if (initialBetaRef.current === null) {
+      initialBetaRef.current = beta;
+      initialGammaRef.current = gamma;
+      return;
+    }
+
+    // Relative tilt from the baseline posture
+    let diffBeta = beta - initialBetaRef.current;
+    let diffGamma = gamma - initialGammaRef.current;
+
+    // Clamp tilt angles to +/- 30 degrees
+    diffBeta = Math.max(-30, Math.min(30, diffBeta));
+    diffGamma = Math.max(-30, Math.min(30, diffGamma));
+
+    // Scale to match the motion value range (-300 to 300)
+    x.set(diffGamma * 10);
+    y.set(diffBeta * 10);
+  };
+
+  useEffect(() => {
+    const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    setIsTouchDevice(touch);
+
+    if (touch && typeof window !== 'undefined') {
+      if (window.DeviceOrientationEvent) {
+        setMotionSupported(true);
+        if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+          setPermissionPromptNeeded(true);
+        } else {
+          // Android / standard mobile browsers auto-grant permission
+          window.addEventListener('deviceorientation', handleOrientation);
+          setMotionActive(true);
+        }
+      }
+    }
+
+    return () => {
+      window.removeEventListener('deviceorientation', handleOrientation);
+    };
+  }, []);
+
+  const requestMotionPermission = async () => {
+    if (
+      typeof DeviceOrientationEvent !== 'undefined' &&
+      typeof DeviceOrientationEvent.requestPermission === 'function'
+    ) {
+      try {
+        const state = await DeviceOrientationEvent.requestPermission();
+        if (state === 'granted') {
+          window.addEventListener('deviceorientation', handleOrientation);
+          setMotionActive(true);
+          setPermissionPromptNeeded(false);
+        }
+      } catch (err) {
+        console.error('Error requesting orientation permission:', err);
+      }
+    }
+  };
+
+  const handleHeroTouch = () => {
+    initialBetaRef.current = null;
+    initialGammaRef.current = null;
+  };
 
   const handleMouseMove = (event) => {
+    if (isTouchDevice) return;
     const rect = event.currentTarget.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
@@ -52,6 +139,7 @@ export default function Hero() {
   };
 
   const handleMouseLeave = () => {
+    if (isTouchDevice) return;
     x.set(0);
     y.set(0);
   };
@@ -62,6 +150,7 @@ export default function Hero() {
       className="hero"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onTouchStart={handleHeroTouch}
       style={{ perspective: 1000 }}
     >
 
@@ -89,6 +178,27 @@ export default function Hero() {
           <span>{personal.location}</span>
           <span className="hero__eyebrow-sep">·</span>
           <span style={{ color: '#b8a8f0' }}>{personal.status}</span>
+          {isTouchDevice && (
+            <>
+              <span className="hero__eyebrow-sep">·</span>
+              {permissionPromptNeeded && !motionActive ? (
+                <button 
+                  onClick={(e) => { e.stopPropagation(); requestMotionPermission(); }} 
+                  className="hero__motion-enable-btn"
+                >
+                  ✨ Tap to enable 3D Motion
+                </button>
+              ) : motionActive ? (
+                <span className="hero__motion-status" onClick={handleHeroTouch} style={{ cursor: 'pointer' }}>
+                  📱 3D Motion active (Tap to reset)
+                </span>
+              ) : (
+                <span className="hero__motion-status">
+                  📳 Motion unsupported
+                </span>
+              )}
+            </>
+          )}
         </motion.div>
 
         {/* name — word-by-word stagger, wrapped for left accent bar */}
