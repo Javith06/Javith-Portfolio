@@ -1160,7 +1160,7 @@ ul { list-style: none; }
 .footer-link:hover { color: var(--beige); }
 
 /* ─── RESPONSIVE ──────────────────────────────────────────────────── */
-@media (max-width: 1080px) {
+@media (max-width: 1280px) {
   :root { --pad: 28px; }
   .about__grid, .exp__cols, .contact-grid {
     grid-template-columns: minmax(0, 1fr);
