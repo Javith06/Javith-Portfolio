@@ -120,9 +120,12 @@ export default function Projects() {
                 <div className="proj-feat__tags">
                   {featured.tags.map(t => <span key={t} className="tag">{t}</span>)}
                 </div>
-              </div>
-              <div className="proj-feat__vis">
-                <POSMock />
+              <div className="proj-feat__vis" style={{ padding: 0, minHeight: 'auto' }}>
+                <img 
+                  src="/smart-pos.png" 
+                  alt="Smart-POS restaurant Point of Sale preview" 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
+                />
               </div>
             </div>
           </Reveal>
@@ -133,7 +136,13 @@ export default function Projects() {
             <Reveal key={proj.id} delay={0.06 + i * 0.06}>
               <div className="proj-card">
                 <div className="proj-card__prev">
-                  {proj.id === 'hawker-pos' && <HawkerMock />}
+                  {proj.id === 'hawker-pos' && (
+                    <img 
+                      src="/hawker-pos.png" 
+                      alt="Hawker POS preview" 
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
+                    />
+                  )}
                   {proj.id === 'freelance' && <FreelanceMock />}
                 </div>
                 <div className="proj-card__body">
