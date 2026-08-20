@@ -178,25 +178,15 @@ export default function Hero() {
           <span>{personal.location}</span>
           <span className="hero__eyebrow-sep">·</span>
           <span style={{ color: '#b8a8f0' }}>{personal.status}</span>
-          {isTouchDevice && (
+          {isTouchDevice && permissionPromptNeeded && !motionActive && (
             <>
               <span className="hero__eyebrow-sep">·</span>
-              {permissionPromptNeeded && !motionActive ? (
-                <button 
-                  onClick={(e) => { e.stopPropagation(); requestMotionPermission(); }} 
-                  className="hero__motion-enable-btn"
-                >
-                  ✨ Tap to enable 3D Motion
-                </button>
-              ) : motionActive ? (
-                <span className="hero__motion-status" onClick={handleHeroTouch} style={{ cursor: 'pointer' }}>
-                  📱 3D Motion active (Tap to reset)
-                </span>
-              ) : (
-                <span className="hero__motion-status">
-                  📳 Motion unsupported
-                </span>
-              )}
+              <button 
+                onClick={(e) => { e.stopPropagation(); requestMotionPermission(); }} 
+                className="hero__motion-enable-btn"
+              >
+                ✨ Tap to enable 3D Motion
+              </button>
             </>
           )}
         </motion.div>
