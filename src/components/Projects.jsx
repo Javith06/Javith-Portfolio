@@ -1,5 +1,7 @@
 import { Reveal } from './Reveal';
 import { projects } from '../data/portfolio';
+import smartPosImg from '../assets/smart-pos.jpg';
+import hawkerPosImg from '../assets/hawker-pos.png';
 
 /* ── Smart-POS UI mockup ─────────────────────────────────────────── */
 function POSMock() {
@@ -123,7 +125,7 @@ export default function Projects() {
               </div>
               <div className="proj-feat__vis" style={{ padding: 0, minHeight: 'auto' }}>
                 <img 
-                  src={`${import.meta.env.BASE_URL}smart-pos.jpg`} 
+                  src={smartPosImg} 
                   alt="Smart-POS restaurant Point of Sale preview" 
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
                 />
@@ -139,7 +141,7 @@ export default function Projects() {
                 <div className="proj-card__prev">
                   {proj.id === 'hawker-pos' && (
                     <img 
-                      src={`${import.meta.env.BASE_URL}hawker-pos.png`} 
+                      src={hawkerPosImg} 
                       alt="Hawker POS preview" 
                       style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
                     />
