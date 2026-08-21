@@ -27,7 +27,7 @@ export default function Navbar() {
     >
       <div className="nav__inner">
         <a href="#hero" className="nav__logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <img src="/logo.png" alt="Atom Logo" style={{ width: '26px', height: '26px', borderRadius: '50%' }} />
+          <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Atom Logo" style={{ width: '26px', height: '26px', borderRadius: '50%' }} />
           <span>Javith's Portfolio</span>
         </a>
         <nav className="nav__links" aria-label="Main navigation">

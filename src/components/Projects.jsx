@@ -123,7 +123,7 @@ export default function Projects() {
               </div>
               <div className="proj-feat__vis" style={{ padding: 0, minHeight: 'auto' }}>
                 <img 
-                  src="/smart-pos.jpg" 
+                  src={`${import.meta.env.BASE_URL}smart-pos.jpg`} 
                   alt="Smart-POS restaurant Point of Sale preview" 
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
                 />
@@ -139,7 +139,7 @@ export default function Projects() {
                 <div className="proj-card__prev">
                   {proj.id === 'hawker-pos' && (
                     <img 
-                      src="/hawker-pos.png" 
+                      src={`${import.meta.env.BASE_URL}hawker-pos.png`} 
                       alt="Hawker POS preview" 
                       style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
                     />

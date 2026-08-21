@@ -273,7 +273,7 @@ export default function Hero() {
             GitHub ↗
           </a>
           <span className="hero__meta-sep">·</span>
-          <a href={personal.resume} target="_blank" rel="noopener noreferrer">
+          <a href={`${import.meta.env.BASE_URL}${personal.resume.replace(/^\//, '')}`} target="_blank" rel="noopener noreferrer">
             Resume ↗
           </a>
           <span className="hero__meta-sep">·</span>
